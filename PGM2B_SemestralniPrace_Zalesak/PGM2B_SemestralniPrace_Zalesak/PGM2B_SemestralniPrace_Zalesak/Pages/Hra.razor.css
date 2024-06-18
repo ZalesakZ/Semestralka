@@ -1,0 +1,36 @@
+﻿.container {
+    margin: 0px;
+    padding: 0px;
+    width: 1600px;
+    height: 750px;
+    background-image: url('../img/pozadi.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 0px 25px 4px 25px;
+    border-color: black;
+    border-style: solid;
+    position: relative;
+}
+
+.postava {
+    padding: 0px;
+    filter: grayscale(0);
+    transform: rotateY(0deg);
+    position: absolute;
+    cursor: pointer;
+    left: -100px;
+    top: 280px;
+    opacity: 0.81;
+    transition: 1s;
+}
+
+.lod {
+    padding: 0px;
+    filter: grayscale(0);
+    position: absolute;
+    left: -100px;
+    top: 280px;
+    opacity: 0.81;
+    transition: 1s;
+}
+

@@ -1,0 +1,70 @@
+﻿@page "/hra"
+
+@inject IJSRuntime JS 
+
+<PageTitle>Hra</PageTitle>
+<div class="container">
+
+    @for (int i = 0; i < PostavyList.Count; i++)
+    {
+        var pozice = i;
+        @if(pozice == 4)
+        {
+            <div class="lod" style="@PostavyList[i].Style" >
+                <img src="@PostavyList[i].Obrazek" style="width:100%;" />
+            </div>
+        }
+        else
+        {
+            <div class="postava" style="@PostavyList[i].Style" @onclick="() => Pusunuti(pozice)">
+                <img src="@PostavyList[i].Obrazek" style="width:100%; @PostavyList[i].TransformRotateY" />
+            </div>  
+        }
+    }
+
+</div>
+
+<div class="my-3">
+    <button style="background-color: red ; color: white" onclick="location.reload()">Spustit znovu</button>
+
+    <div class="my-3">
+        Legenda:<br />
+        <ul>
+            <li>Bílé kolečko je koza.</li>
+            <li>Zelené kolečko je zelí.</li>
+            <li>Hnědé kolečko je vlk.</li>
+            <li>Modré kolečko je převozník.</li>
+            <br />
+            <li>Levá strana obdélníku je levý břeh řeky a naopak.</li>
+        </ul>
+    </div>
+</div>
+
+<svg width="@platnoW" height="@platnoH" xmlns="http://www.w3.org/2000/svg" style="border: black solid 3px">
+    @for (int i = 0; i < ObdelnikyList.Count; i++)
+    {
+        <rect width="@ObdelnikyList[i].StranaA" height="@ObdelnikyList[i].StranaB" x="@ObdelnikyList[i].PozX" y="@ObdelnikyList[i].PozY" fill="transparent" stroke="green" stroke-width="2px" />
+
+        <line x1="@x" y1="@y1" x2="@x" y2="@y3" style="stroke:blue;stroke-width:2" />
+
+        @if (i > 0)
+        {
+            <line x1="@x" y1="@y3" x2="@x" y2="@y2" style="stroke:blue;stroke-width:2" />
+        }
+
+        @if (i == ObdelnikyList.Count - 1)
+        {
+            <rect width="@ObdelnikyList[i].StranaA" height="@ObdelnikyList[i].StranaB" x="@ObdelnikyList[i].PozX" y="@ObdelnikyList[i].PozY" fill="transparent" stroke="red" stroke-width="2px" />
+        }
+    }
+
+    @for (int j = 0; j < KoleckaList.Count; j++)
+    {
+        <circle r="@KoleckaList[j].Polomer" cx="@KoleckaList[j].KolPozX" cy="@KoleckaList[j].KolPozY" style="fill:@Barvy[j]" stroke="black" />
+    }
+
+</svg>
+
+
+
+
